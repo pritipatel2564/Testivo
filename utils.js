@@ -5,28 +5,28 @@ console.log(id - 1);
 
 // get Details
 
-const apiURlId = "https://dummyjson.com/recipes?id=${id}";
+const apiUrlId = "https://dummyjson.com/recipes?id=${id}";
 let recipe = [];
-async function getDeatils() {
+async function getDetails() {
     try {
-        const responce = await fetch(apiURlId, {
+        const response = await fetch(apiUrlId, {
             headers: {
                 Accept: "Application/json",
             }
         })
-        const data = await responce.json();
+        const data = await response.json();
         recipe = data.recipes;
         document.querySelector('.detailsContent').innerHTML = `
         <h1>${recipe[id - 1].name}</h1>
         <img src="${recipe[id - 1].image}">
         <p>Country: ${recipe[id - 1].cuisine}</p>
-        <p class="categori">Categories: ${recipe[id - 1].tags[0]}</p>
+        <p class="category">Categories: ${recipe[id - 1].tags[0]}</p>
         `;
          let ingredientHTML = "";
         for(let i = 0; i < recipe[id - 1].ingredients.length; i++){
             ingredientHTML += `<li>${recipe[id - 1].ingredients[i]}</li>`;
             console.log(ingredientHTML);
-                     document.querySelector(".ingrediensContent").innerHTML = `
+                     document.querySelector(".ingredientsContent").innerHTML = `
                      <h1>ingredients:</h1>
                      <ul>${ingredientHTML}</ul>`;
     }
@@ -42,7 +42,7 @@ async function getDeatils() {
         
     }
 }
-getDeatils();
+getDetails();
 
 // categorys click event
 
@@ -58,7 +58,7 @@ const showCategories = (category) => {
          <h3>${recipe[i].name}</h3>
          <img src="${recipe[i].image}">
          <p>Country: ${recipe[i].cuisine}</p>
-         <p class="categori">Categories: ${recipe[i].tags[0]}</p>
+         <p class="category">Categories: ${recipe[i].tags[0]}</p>
          </div>`;
          }
    }
@@ -82,8 +82,8 @@ const pasta = document.querySelector(".pasta");
 pasta.addEventListener("click", function(){
     showCategories("pasta");
 })
-const vegetarien = document.querySelector(".vegetarien");
-vegetarien.addEventListener("click", function(){
+const vegetarian = document.querySelector(".vegetarian");
+vegetarian.addEventListener("click", function(){
     showCategories("vegetarian");
 })
 const drinks = document.querySelector(".drinks");
@@ -108,7 +108,7 @@ submitSearch.addEventListener("submit", function(e){
          <h3>${recipe[i].name}</h3>
          <img src="${recipe[i].image}">
          <p>Country: ${recipe[i].cuisine}</p>
-         <p class="categori">Categories: ${recipe[i].tags[0]}</p>
+         <p class="category">Categories: ${recipe[i].tags[0]}</p>
          </div>`;
          }
    }

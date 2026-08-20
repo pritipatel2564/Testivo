@@ -21,12 +21,12 @@ const recipeCards = document.querySelector(".recipeCards");
 let recipes = [];
 async function getRecipesCards() {
     try {
-        const responce = await fetch(apiUrl, {
+        const response = await fetch(apiUrl, {
             headers: {
                 Accept: "Application/json",
             }
         });
-        const data = await responce.json();
+        const data = await response.json();
         recipes = data.recipes;
         for (let i = 0; i < recipes.length; i++) {
             const card = document.createElement("div");

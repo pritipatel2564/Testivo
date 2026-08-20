@@ -112,7 +112,7 @@
     display: flex;
     gap: 2rem;
 }
-/* .salad, .beef, .chicken, .pasta, .vegetarien, .drinks{ */
+/* .salad, .beef, .chicken, .pasta, .vegetarian, .drinks{ */
 .reccards{
     padding: 0.5rem;
     height: 3rem;
@@ -124,7 +124,7 @@
     justify-content: center;
     align-items: center;
 }
-/* .salad:hover, .beef:hover, .chicken:hover, .pasta:hover, .vegetarien:hover, .drinks:hover{ */
+/* .salad:hover, .beef:hover, .chicken:hover, .pasta:hover, .vegetarian:hover, .drinks:hover{ */
 .reccards:hover{
  transform: translateY(-0.5rem);
  box-shadow: 0 0 12px 5px gray;
@@ -148,7 +148,7 @@
     gap: 2rem;
 
 }
-.american,.canadian, .italian, .indian, .chinise,.british, .seeMore{
+.american,.canadian, .italian, .indian, .chinese,.british, .seeMore{
     height: 3rem;
     width: 7rem;
  background-color: rgb(227, 86, 25);
@@ -158,7 +158,7 @@
     font-weight: bolder;
     border: none;
 }
-.american:hover,.canadian:hover,.italian:hover, .indian:hover, .chinise:hover, .british:hover, .seeMore:hover{
+.american:hover,.canadian:hover,.italian:hover, .indian:hover, .chinese:hover, .british:hover, .seeMore:hover{
    
     box-shadow: 0 0 8px 0 orange;
  }
@@ -169,13 +169,13 @@
     justify-content: center;
     gap: 0.5rem;
 }
-.rendomSearch{
+.randomSearch{
     padding: 3rem;
     display: flex;
     align-items: center;
     justify-content: left;
 }
-.rendomSearch a{
+.randomSearch a{
      height: 3rem;
     width: 15rem;
  background-color: rgb(227, 86, 25);
@@ -200,7 +200,7 @@
 .rensearch i{
     margin-left: 0.5rem;
 }
-.rendomSearch a:hover{
+.randomSearch a:hover{
         box-shadow: 0 0 8px 0 orange;
 
 }
@@ -292,7 +292,7 @@
 .footerSection span{
     color: rgb(227, 86, 25);
 }
-.recip{
+.recipe{
     padding: 0 2rem;
 }
 .RecipesContainer{
@@ -349,7 +349,7 @@
 .detailsContent p{
     font-size: 1.2rem;
 }
-.detailsContent .categori{
+.detailsContent .category{
     margin-top: -1rem;
 }
 .ingreSteps{
@@ -360,7 +360,7 @@
     gap: 2rem;
     /* flex-direction: column; */
 }
-.ingrediensContent, .instruction{
+.ingredientsContent, .instruction{
     font-weight: bolder;
     font-size: 1.2rem;
     padding: 2rem;
