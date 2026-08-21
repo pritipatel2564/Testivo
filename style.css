@@ -405,45 +405,113 @@ body {
     font-size: 1.5rem;
 }
 
-.detailsContent {
-    font-weight: bolder;
+/* Details Page Hero */
+.detailsCard {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.recipe-hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    padding: 2rem;
+    align-items: center;
+}
+.recipe-hero__image-container {
+    flex: 1;
+    min-width: 300px;
+}
+.recipe-hero__image {
+    width: 100%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 2rem;
+    box-shadow: var(--card-shadow);
+}
+.recipe-hero__content {
+    flex: 1;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
-
-.detailsContent img {
-    height: 15rem;
-    width: 15rem;
-    border-radius: 1rem;
-    box-shadow: var(--card-shadow-hover);
+.recipe-hero__title {
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
 }
-
-.detailsContent p {
-    font-size: 1.2rem;
-}
-
-.detailsContent .category {
-    margin-top: -1rem;
-}
-
-.ingreSteps {
-    padding: 0 2rem;
+.recipe-hero__meta {
     display: flex;
-    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.recipe-hero__tag {
+    background-color: #f0f4f8;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.recipe-hero__favorite-btn {
+    align-self: flex-start;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    border: 2px solid #e0e0e0;
+    background-color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
     align-items: center;
-    gap: 2rem;
-    /* flex-direction: column; */
+    gap: 0.5rem;
+    color: var(--text-color);
+}
+.recipe-hero__favorite-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+.recipe-hero__favorite-btn.active {
+    color: red;
+    border-color: red;
+    background-color: #fff0f0;
+}
+
+/* Ingredients and Steps */
+.ingreSteps {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
 }
 
 .ingredientsContent,
 .instruction {
-    font-weight: bolder;
-    font-size: 1.2rem;
-    padding: 2rem;
-    border-radius: 1rem;
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
     box-shadow: var(--card-shadow);
+    height: fit-content;
+}
+.ingredientsContent h1,
+.instruction h1 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    text-transform: capitalize;
+}
+.ingredientsContent ul,
+.instruction ol {
+    margin: 0;
+    padding-left: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+.ingredientsContent li,
+.instruction li {
+    margin-bottom: 0.8rem;
 }
 
 .remove {
@@ -649,7 +717,7 @@ body {
     }
 
     .ingreSteps {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 }
 

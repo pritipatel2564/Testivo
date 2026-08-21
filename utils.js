@@ -12,19 +12,46 @@ async function getDetails() {
             }
         });
         const recipeData = await response.json();
+        let favorites = JSON.parse(localStorage.getItem("testivoFavorites")) || [];
+        let isAlreadyFavorite = favorites.some(fav => fav.id === recipeData.id);
+
         document.querySelector('.detailsContent').innerHTML = `
-        <div class="premium-card">
-            <div class="premium-card__image-wrapper">
-                <img src="${recipeData.image}" alt="${recipeData.name}">
+        <div class="recipe-hero">
+            <div class="recipe-hero__image-container">
+                <img src="${recipeData.image}" alt="${recipeData.name}" class="recipe-hero__image">
             </div>
-            <div class="premium-card__body">
-                <h3 class="premium-card__title">${recipeData.name}</h3>
-                <div class="premium-card__meta">
-                    <span class="premium-card__tag">${recipeData.cuisine}</span>
-                    <span class="premium-card__tag">${recipeData.tags ? recipeData.tags[0] : 'N/A'}</span>
+            <div class="recipe-hero__content">
+                <h1 class="recipe-hero__title">${recipeData.name}</h1>
+                <div class="recipe-hero__meta">
+                    <span class="recipe-hero__tag">${recipeData.cuisine}</span>
+                    <span class="recipe-hero__tag">${recipeData.tags && recipeData.tags.length > 0 ? recipeData.tags[0] : 'N/A'}</span>
                 </div>
+                <button id="detailsFavoriteBtn" class="recipe-hero__favorite-btn ${isAlreadyFavorite ? 'active' : ''}">
+                    <i class="fa-solid fa-heart"></i> <span class="btn-text">${isAlreadyFavorite ? 'Added to Favorites' : 'Add to Favorites'}</span>
+                </button>
             </div>
         </div>`;
+
+        // Attach listener for the Add to Favorites button
+        const favoriteBtn = document.getElementById("detailsFavoriteBtn");
+        if (favoriteBtn) {
+            favoriteBtn.addEventListener("click", () => {
+                let currentFavorites = JSON.parse(localStorage.getItem("testivoFavorites")) || [];
+                const isFav = currentFavorites.some(fav => fav.id === recipeData.id);
+                if (!isFav) {
+                    currentFavorites.push(recipeData);
+                    localStorage.setItem("testivoFavorites", JSON.stringify(currentFavorites));
+                    favoriteBtn.classList.add("active");
+                    favoriteBtn.querySelector('.btn-text').innerText = "Added to Favorites";
+                } else {
+                    // Optional: Remove from favorites if already added
+                    currentFavorites = currentFavorites.filter(fav => fav.id !== recipeData.id);
+                    localStorage.setItem("testivoFavorites", JSON.stringify(currentFavorites));
+                    favoriteBtn.classList.remove("active");
+                    favoriteBtn.querySelector('.btn-text').innerText = "Add to Favorites";
+                }
+            });
+        }
         let ingredientHTML = "";
         for (let i = 0; i < recipeData.ingredients.length; i++) {
             ingredientHTML += `<li>${recipeData.ingredients[i]}</li>`;
