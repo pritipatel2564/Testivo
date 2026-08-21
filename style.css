@@ -71,8 +71,26 @@ body {
     padding: 1rem;
     text-decoration: none;
     color: black;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bolder;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+#fav-count {
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.5rem;
+    box-shadow: 0 2px 5px rgba(227, 86, 25, 0.4);
 }
 
 .sign {

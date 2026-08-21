@@ -42,6 +42,7 @@ favoriteCards.addEventListener("click", function(event){
         localStorage.setItem("testivoFavorites", JSON.stringify(favorites));
         
         if (window.showToast) window.showToast("Removed from Favorites.");
+        if (window.updateFavCount) window.updateFavCount();
         
         // Update empty state if needed
         if (favorites.length === 0) {

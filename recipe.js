@@ -84,6 +84,7 @@ if (recipeCards) {
                 localStorage.setItem("testivoFavorites", JSON.stringify(favorites));
                 event.target.style.color = "red"; // Visual feedback
                 if (window.showToast) window.showToast("Added to Favorites! 🖤");
+                if (window.updateFavCount) window.updateFavCount();
             } else {
                 if (window.showToast) window.showToast("Already in Favorites!");
             }

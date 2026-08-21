@@ -24,3 +24,21 @@ function showToast(message) {
 
 // Make globally available
 window.showToast = showToast;
+
+function updateFavCount() {
+    let favorites = JSON.parse(localStorage.getItem("testivoFavorites")) || [];
+    const count = favorites.length;
+    const badge = document.getElementById("fav-count");
+    if (badge) {
+        if (count > 0) {
+            badge.innerText = count;
+            badge.style.display = "inline-flex";
+        } else {
+            badge.style.display = "none";
+        }
+    }
+}
+window.updateFavCount = updateFavCount;
+
+// Run on page load
+document.addEventListener("DOMContentLoaded", updateFavCount);
