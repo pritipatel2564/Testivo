@@ -41,6 +41,8 @@ favoriteCards.addEventListener("click", function(event){
         favorites = favorites.filter(fav => fav.id !== idToRemove);
         localStorage.setItem("testivoFavorites", JSON.stringify(favorites));
         
+        if (window.showToast) window.showToast("Removed from Favorites.");
+        
         // Update empty state if needed
         if (favorites.length === 0) {
             favoriteCards.innerHTML = "<p style='grid-column: 1 / -1; font-weight: normal; color: gray;'>No favorite recipes yet! Go back to home and add some.</p>";

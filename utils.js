@@ -43,12 +43,14 @@ async function getDetails() {
                     localStorage.setItem("testivoFavorites", JSON.stringify(currentFavorites));
                     favoriteBtn.classList.add("active");
                     favoriteBtn.querySelector('.btn-text').innerText = "Added to Favorites";
+                    if (window.showToast) window.showToast("Added to Favorites! 🖤");
                 } else {
                     // Optional: Remove from favorites if already added
                     currentFavorites = currentFavorites.filter(fav => fav.id !== recipeData.id);
                     localStorage.setItem("testivoFavorites", JSON.stringify(currentFavorites));
                     favoriteBtn.classList.remove("active");
                     favoriteBtn.querySelector('.btn-text').innerText = "Add to Favorites";
+                    if (window.showToast) window.showToast("Removed from Favorites.");
                 }
             });
         }
@@ -257,6 +259,9 @@ if (mainCardsContainer) {
                 favorites.push(recipe);
                 localStorage.setItem("testivoFavorites", JSON.stringify(favorites));
                 event.target.style.color = "red"; // Visual feedback
+                if (window.showToast) window.showToast("Added to Favorites! 🖤");
+            } else {
+                if (window.showToast) window.showToast("Already in Favorites!");
             }
         }
     });
