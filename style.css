@@ -1,3 +1,14 @@
+:root {
+    --primary-color: rgb(227, 86, 25);
+    --primary-hover: rgb(255, 120, 50);
+    --bg-color: #fffdfc;
+    --footer-bg: #111111;
+    --text-color: #111111;
+    --text-light: #ffffff;
+    --card-shadow: 0 0 8px 0 rgba(128, 128, 128, 0.4);
+    --card-shadow-hover: 0 0 12px 5px rgba(128, 128, 128, 0.6);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -7,7 +18,8 @@ body, html {
 }
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #fffdfc;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -25,7 +37,7 @@ body {
     z-index: 100;
 }
 .logo {
-    color: rgb(227, 86, 25);
+    color: var(--primary-color);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -33,12 +45,17 @@ body {
 .logo i{
     font-size: 2rem;
 }
+.applicationTitle {
+    display: flex;
+    flex-direction: column;
+}
 .applicationTitle h1{
     font-style: italic;
+    margin: 0;
 }
 .applicationTitle p{
-    margin-top: -2rem;
-    color: black;
+    margin: 0;
+    color: var(--text-color);
     font-weight: bolder;
 }
 .navBar a{
@@ -52,10 +69,17 @@ body {
     height: 2rem;
     width: 5rem;
     color: white;
-    background-color: rgb(227, 86, 25) ;
+    background-color: var(--primary-color) ;
     border: none;
     border-radius: 1rem;
     font-weight: bolder;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.sign:hover, .sign:focus-visible {
+    background-color: var(--primary-hover);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 .favoriteCards{
    
@@ -70,10 +94,13 @@ body {
 }
 .favCards{
     padding: 1rem;
-     height: 21rem;
-    width: 17rem;
- border-radius: 1rem;
-    box-shadow: 0 0 8px 0 gray;
+    min-height: 21rem;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .favoriteCards img{
     margin-left: 3rem;
@@ -89,39 +116,48 @@ body {
     font-size: 2rem;
 }
 .heroSection span {
-    color: rgb(227, 86, 25);
+    color: var(--primary-color);
     font-style: italic;
 }
 
 #searching{
     background-color: white;
-    height: 2rem;
-    width: 20rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 8px 0 gray;
+    height: 3.5rem;
+    width: 26rem;
+    border-radius: 2rem;
+    box-shadow: var(--card-shadow);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.4rem 0.4rem 0.4rem 1rem;
 }
-#searching{
-    color: rgb(227, 86, 25);
+#searching i {
+    color: var(--primary-color);
     font-size: 1.3rem;
 }
 
 #search{
-    width: 15rem;
+    flex: 1;
     outline: none;
     border: none;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: transparent;
 }
 .searchBtn{
-    background-color: rgb(227, 86, 25);
-    border-radius: 0.7rem;
-    padding: 0.5rem;
+    background-color: var(--primary-color);
+    border-radius: 1.5rem;
+    padding: 0.7rem 1.5rem;
     color: white;
     font-weight: bolder;
     border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.searchBtn:hover, .searchBtn:focus-visible {
+    background-color: var(--primary-hover);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 .category{
     padding: 0 2rem;
@@ -132,20 +168,24 @@ body {
 }
 /* .salad, .beef, .chicken, .pasta, .vegetarian, .drinks{ */
 .reccards{
-    padding: 0.5rem;
-    height: 3rem;
-    width: 13rem;
-    border-radius: 1rem;
-    box-shadow: 0 0 8px 0 gray;
+    border-radius: 2.5rem;
+    box-shadow: var(--card-shadow);
+    background-color: white;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.reccards > div {
+    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
 }
 /* .salad:hover, .beef:hover, .chicken:hover, .pasta:hover, .vegetarian:hover, .drinks:hover{ */
 .reccards:hover{
  transform: translateY(-0.5rem);
- box-shadow: 0 0 12px 5px gray;
+ box-shadow: var(--card-shadow-hover);
  }
  .reccards img{
     height: 2.5rem;
@@ -169,17 +209,20 @@ body {
 .american,.canadian, .italian, .indian, .chinese,.british, .seeMore{
     height: 3rem;
     width: 7rem;
- background-color: rgb(227, 86, 25);
+ background-color: var(--primary-color);
     border-radius: 1.5rem;
     padding: 0.5rem;
     color: white;
     font-weight: bolder;
     border: none;
 }
-.american:hover,.canadian:hover,.italian:hover, .indian:hover, .chinese:hover, .british:hover, .seeMore:hover{
-   
-    box-shadow: 0 0 8px 0 orange;
- }
+.american:hover,.canadian:hover,.italian:hover, .indian:hover, .chinese:hover, .british:hover, .seeMore:hover,
+.american:focus-visible,.canadian:focus-visible,.italian:focus-visible, .indian:focus-visible, .chinese:focus-visible, .british:focus-visible, .seeMore:focus-visible {
+    box-shadow: var(--card-shadow-hover);
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    cursor: pointer;
+}
 
 .seeMore{
     display: flex;
@@ -196,7 +239,7 @@ body {
 .randomSearch a{
      height: 3rem;
     width: 15rem;
- background-color: rgb(227, 86, 25);
+ background-color: var(--primary-color);
      border-radius: 2rem;
     padding: 0.5rem;
     color: white;
@@ -212,7 +255,7 @@ body {
      color: white;
      font-size: 1rem;
      font-weight: bolder;
-      background-color: rgb(227, 86, 25);
+      background-color: var(--primary-color);
 
 }
 .rensearch i{
@@ -227,11 +270,13 @@ body {
 }
 .cardsContent{
      padding: 1rem;
-     height: 20rem;
-    width: 17rem;
+     min-height: 20rem;
+    width: 100%;
+    max-width: 17rem;
     border-radius: 1rem;
-    box-shadow: 0 0 8px 0 gray;
-   
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
 }
 .cardsContainer{
     margin-top: 2rem;
@@ -268,7 +313,7 @@ body {
 
 }
 .footerContainer i{
-    color: rgb(227, 86, 25);
+    color: var(--primary-color);
     font-size: 2rem;
 }
 .footerContent{
@@ -284,7 +329,7 @@ body {
 }
 .footerLogo p{
     margin-top: -1rem;
-    color: rgb(227, 86, 25);
+    color: var(--primary-color);
 }
 .iconsContent{
     display: flex;
@@ -304,11 +349,11 @@ body {
     font-weight: bolder;
 }
 .footerSection i{
-    color: rgb(227, 86, 25);
+    color: var(--primary-color);
     font-size: 2rem;
 }
 .footerSection span{
-    color: rgb(227, 86, 25);
+    color: var(--primary-color);
 }
 .recipe{
     padding: 0 2rem;
@@ -325,28 +370,32 @@ body {
     overflow: hidden;
 }
 .recipeCard {
-    height: 23rem;
-    width: 17rem;
+    min-height: 23rem;
+    width: 100%;
     padding: 1rem;
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 1rem;
-    box-shadow: 0 0 8px 0 gray;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .recipeCard .cate{
-    margin-top: -1rem;
+    margin: 0;
 }
 
 .recipeCard .favorites{
-    margin-left: 14rem;
-    margin-bottom: -1.5rem;
+    text-align: right;
+    margin: 0;
+    cursor: pointer;
 }
 .recipeCard img{
     margin-left: 3.5rem;
     height: 10rem;
     width: 10rem;
     border-radius: 1rem;
-    box-shadow: 0 0 8px 0 gray;
+    box-shadow: var(--card-shadow);
 }
 .details{
     font-size: 1.5rem;
@@ -362,7 +411,7 @@ body {
     height: 15rem;
     width: 15rem;
     border-radius: 1rem;
-    box-shadow: 0 0 8px 5px gray;
+    box-shadow: var(--card-shadow-hover);
 }
 .detailsContent p{
     font-size: 1.2rem;
@@ -383,7 +432,7 @@ body {
     font-size: 1.2rem;
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 0 8px 0 gray;
+    box-shadow: var(--card-shadow);
 }
 .remove{
     height: 2rem;;
@@ -392,6 +441,14 @@ body {
     background-color: black;
     font-weight: bolder;
     border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: none;
+}
+.remove:hover, .remove:focus-visible {
+    background-color: #333;
+    outline: 2px solid black;
+    outline-offset: 2px;
 }
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
