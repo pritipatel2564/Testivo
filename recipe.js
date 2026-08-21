@@ -30,18 +30,21 @@ async function getRecipesCards() {
         recipes = data.recipes;
         let cardsHTML = "";
         for (let i = 0; i < recipes.length; i++) {
-            cardsHTML += `<div class="recipeCard">
-            <div>
-            <h3>${recipes[i].name}</h3>
-           <img src="${recipes[i].image}">
-            <p>Country: ${recipes[i].cuisine}</p>
-          <p class="cate">Categories: ${recipes[i].tags ? recipes[i].tags[0] : 'N/A'}</p>
-           <p class="favorites" data-index="${i}">🖤</p>
-           <div class="details" data-index="${i}">Details</div>
-           
-         <div class="ingredientsBox"></div>
-          </div>
-          </div>`;
+            cardsHTML += `
+            <div class="premium-card">
+                <div class="premium-card__image-wrapper">
+                    <img src="${recipes[i].image}" alt="${recipes[i].name}">
+                    <div class="premium-card__favorite favorites" data-index="${i}">🖤</div>
+                </div>
+                <div class="premium-card__body">
+                    <h3 class="premium-card__title">${recipes[i].name}</h3>
+                    <div class="premium-card__meta">
+                        <span class="premium-card__tag">${recipes[i].cuisine}</span>
+                        <span class="premium-card__tag">${recipes[i].tags ? recipes[i].tags[0] : 'N/A'}</span>
+                    </div>
+                    <div class="premium-card__details-btn details" data-index="${i}">View Details</div>
+                </div>
+            </div>`;
         }
         if (recipeCards) recipeCards.innerHTML = cardsHTML;
        

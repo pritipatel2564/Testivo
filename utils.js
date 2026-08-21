@@ -13,11 +13,18 @@ async function getDetails() {
         });
         const recipeData = await response.json();
         document.querySelector('.detailsContent').innerHTML = `
-        <h1>${recipeData.name}</h1>
-        <img src="${recipeData.image}">
-        <p>Country: ${recipeData.cuisine}</p>
-        <p class="category">Categories: ${recipeData.tags && recipeData.tags.length > 0 ? recipeData.tags[0] : 'N/A'}</p>
-        `;
+        <div class="premium-card">
+            <div class="premium-card__image-wrapper">
+                <img src="${recipeData.image}" alt="${recipeData.name}">
+            </div>
+            <div class="premium-card__body">
+                <h3 class="premium-card__title">${recipeData.name}</h3>
+                <div class="premium-card__meta">
+                    <span class="premium-card__tag">${recipeData.cuisine}</span>
+                    <span class="premium-card__tag">${recipeData.tags ? recipeData.tags[0] : 'N/A'}</span>
+                </div>
+            </div>
+        </div>`;
         let ingredientHTML = "";
         for (let i = 0; i < recipeData.ingredients.length; i++) {
             ingredientHTML += `<li>${recipeData.ingredients[i]}</li>`;
@@ -52,16 +59,29 @@ const showCategories = (category) => {
     for (let i = 0; i < recipes.length; i++) {
         if (recipes[i].tags[0] && recipes[i].tags[0].toLowerCase().includes(category)) {
             htmlContent += `
-        <div class="cardsContent">
-         <h3>${recipes[i].name}</h3>
-         <img src="${recipes[i].image}">
-         <p>Country: ${recipes[i].cuisine}</p>
-         <p class="category">Categories: ${recipes[i].tags[0]}</p>
-         </div>`;
+        <div class="premium-card">
+            <div class="premium-card__image-wrapper">
+                <img src="${recipes[i].image}" alt="${recipes[i].name}">
+                <div class="premium-card__favorite favorites" data-index="${i}">🖤</div>
+            </div>
+            <div class="premium-card__body">
+                <h3 class="premium-card__title">${recipes[i].name}</h3>
+                <div class="premium-card__meta">
+                    <span class="premium-card__tag">${recipes[i].cuisine}</span>
+                    <span class="premium-card__tag">${recipes[i].tags && recipes[i].tags.length > 0 ? recipes[i].tags[0] : 'N/A'}</span>
+                </div>
+                <div class="premium-card__details-btn details" data-index="${i}">View Details</div>
+            </div>
+        </div>`;
         }
     }
     
-    document.querySelector(".cardsContainer").innerHTML = htmlContent || "<p>No recipes found.</p>";
+        document.querySelector(".cardsContainer").innerHTML = htmlContent || "<p>No recipes found.</p>";
+        const resultsSection = document.getElementById("results-section");
+        if (resultsSection) {
+            resultsSection.style.display = "block";
+            resultsSection.scrollIntoView({ behavior: "smooth" });
+        }
 }
 
 const showCountries = (country) => {
@@ -71,16 +91,29 @@ const showCountries = (country) => {
     for (let i = 0; i < recipes.length; i++) {
         if (recipes[i].cuisine && recipes[i].cuisine.toLowerCase() === country.toLowerCase()) {
             htmlContent += `
-        <div class="cardsContent">
-         <h3>${recipes[i].name}</h3>
-         <img src="${recipes[i].image}">
-         <p>Country: ${recipes[i].cuisine}</p>
-         <p class="category">Categories: ${recipes[i].tags && recipes[i].tags.length > 0 ? recipes[i].tags[0] : 'N/A'}</p>
-         </div>`;
+        <div class="premium-card">
+            <div class="premium-card__image-wrapper">
+                <img src="${recipes[i].image}" alt="${recipes[i].name}">
+                <div class="premium-card__favorite favorites" data-index="${i}">🖤</div>
+            </div>
+            <div class="premium-card__body">
+                <h3 class="premium-card__title">${recipes[i].name}</h3>
+                <div class="premium-card__meta">
+                    <span class="premium-card__tag">${recipes[i].cuisine}</span>
+                    <span class="premium-card__tag">${recipes[i].tags && recipes[i].tags.length > 0 ? recipes[i].tags[0] : 'N/A'}</span>
+                </div>
+                <div class="premium-card__details-btn details" data-index="${i}">View Details</div>
+            </div>
+        </div>`;
         }
     }
     
-    document.querySelector(".cardsContainer").innerHTML = htmlContent || `<p>No recipes found for ${country} cuisine.</p>`;
+        document.querySelector(".cardsContainer").innerHTML = htmlContent || `<p>No recipes found for ${country} cuisine.</p>`;
+        const resultsSection = document.getElementById("results-section");
+        if (resultsSection) {
+            resultsSection.style.display = "block";
+            resultsSection.scrollIntoView({ behavior: "smooth" });
+        }
 }
 
 const salad = document.querySelector(".salad");
@@ -140,28 +173,64 @@ if (salad) {
 
     submitSearch.addEventListener("submit", function (e) {
         e.preventDefault();
-        if (typeof recipes === 'undefined' || recipes.length === 0) return;
+        const searchInput = search.value.trim().toLowerCase();
         
         let htmlContent = "";
-        const searchCategory = search.value.trim().toLowerCase();
-        
         for (let i = 0; i < recipes.length; i++) {
-            // Check both tags and name for better UX
-            const hasTag = recipes[i].tags[0] && recipes[i].tags[0].toLowerCase().includes(searchCategory);
-            const hasName = recipes[i].name && recipes[i].name.toLowerCase().includes(searchCategory);
+            
+            // Check if tags or name exists and matches the search
+            const hasTag = recipes[i].tags && recipes[i].tags.some(tag => tag.toLowerCase().includes(searchInput));
+            const hasName = recipes[i].name && recipes[i].name.toLowerCase().includes(searchInput);
             
             if (hasTag || hasName) {
                 htmlContent += `
-        <div class="cardsContent">
-         <h3>${recipes[i].name}</h3>
-         <img src="${recipes[i].image}">
-         <p>Country: ${recipes[i].cuisine}</p>
-         <p class="category">Categories: ${recipes[i].tags[0]}</p>
-         </div>`;
+        <div class="premium-card">
+            <div class="premium-card__image-wrapper">
+                <img src="${recipes[i].image}" alt="${recipes[i].name}">
+                <div class="premium-card__favorite favorites" data-index="${i}">🖤</div>
+            </div>
+            <div class="premium-card__body">
+                <h3 class="premium-card__title">${recipes[i].name}</h3>
+                <div class="premium-card__meta">
+                    <span class="premium-card__tag">${recipes[i].cuisine}</span>
+                    <span class="premium-card__tag">${recipes[i].tags && recipes[i].tags.length > 0 ? recipes[i].tags[0] : 'N/A'}</span>
+                </div>
+                <div class="premium-card__details-btn details" data-index="${i}">View Details</div>
+            </div>
+        </div>`;
             }
         }
         
         document.querySelector(".cardsContainer").innerHTML = htmlContent || "<p>No recipes found.</p>";
         search.value = "";
+        const resultsSection = document.getElementById("results-section");
+        if (resultsSection) {
+            resultsSection.style.display = "block";
+            resultsSection.scrollIntoView({ behavior: "smooth" });
+        }
     })
+}
+
+// Add event listeners for dynamic cards rendered in cardsContainer (Homepage search/filters)
+const mainCardsContainer = document.querySelector(".cardsContainer");
+if (mainCardsContainer) {
+    mainCardsContainer.addEventListener("click", function(event) {
+        if (event.target.classList.contains("details")) {
+            const index = event.target.dataset.index;
+            const id = recipes[index].id;
+            window.location.href = `details.html?id=${id}`;
+        }
+        
+        if (event.target.classList.contains("favorites")) {
+            const index = event.target.dataset.index;
+            let favorites = JSON.parse(localStorage.getItem("testivoFavorites")) || [];
+            const recipe = recipes[index];
+            const isAlreadyFavorite = favorites.some(fav => fav.id === recipe.id);
+            if (!isAlreadyFavorite) {
+                favorites.push(recipe);
+                localStorage.setItem("testivoFavorites", JSON.stringify(favorites));
+                event.target.style.color = "red"; // Visual feedback
+            }
+        }
+    });
 }

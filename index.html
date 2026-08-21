@@ -39,63 +39,32 @@
     </section>
     <section class="category">
         <h1>Explore Categories</h1>
-        <div class="categoryCards">
-            <div class="reccards">
-                <div class="salad">
-                    <img src="image/vegetarien.jpeg">
-                    <p>salad</p>
-                </div>
-            </div>
-            <div class="reccards">
-                <div class="beef">
-                    <img src="image/beef.jpeg">
-                    <p>Beef</p>
-                </div>
-            </div>
-            <div class="reccards">
-                <div class="chicken">
-                    <img src="image/chicken.jpeg">
-                    <p>Chicken</p>
-                </div>
-            </div>
-            <div class="reccards">
-                <div class="pasta">
-                    <img src="image/pasta.jpeg" >
-                    <p>pasta</p>
-                </div>
-            </div>
-            <div class="reccards">
-                <div class="vegetarian">
-                    <img src="image/vegetarien.jpeg">
-                    <p>Vegetarian</p>
-                </div>
-            </div>
-            <div class="reccards">
-                <div class="drinks">
-                    <img src="image/drink.jpeg" >
-                    <p>Drinks</p>
-                </div>
-            </div>
+        <div class="categoryCards filter-container">
+            <button class="salad filter-chip">Salad</button>
+            <button class="beef filter-chip">Beef</button>
+            <button class="chicken filter-chip">Chicken</button>
+            <button class="pasta filter-chip">Pasta</button>
+            <button class="vegetarian filter-chip">Vegetarian</button>
+            <button class="drinks filter-chip">Drinks</button>
         </div>
-    </section>
-    <section class="cardsContainer">
     </section>
     <section class="countryFood">
         <h1>Explore Country</h1>
-        <div class="searchCountry">
-            <Button class="american">American</Button>
-            <Button class="canadian">Canadian</Button>
-            <Button class="italian">Italian</Button>
-            <Button class="indian">Indian</Button>
-            <Button class="chinese">Chinese</Button>
-            <Button class="british">British</Button>
-            <button class="seeMore">See more<i class="fa-solid fa-circle-chevron-right"></i></button>
+        <div class="searchCountry filter-container">
+            <button class="american filter-chip">American</button>
+            <button class="canadian filter-chip">Canadian</button>
+            <button class="italian filter-chip">Italian</button>
+            <button class="indian filter-chip">Indian</button>
+            <button class="chinese filter-chip">Chinese</button>
+            <button class="british filter-chip">British</button>
+            <button class="seeMore filter-chip primary-chip">See more <i
+                    class="fa-solid fa-circle-chevron-right"></i></button>
         </div>
     </section>
-    <div class="randomSearch">
-        <a href="recipe.html"><button class="rensearch">Generate another Recipe<i
-                    class="fa-solid fa-circle-chevron-right"></i></button></a>
-        <!-- <a href="recipe.html"></a> -->
+
+    <div id="results-section" style="display: none; padding: 2rem 2rem 0 2rem;">
+        <h1 style="margin-bottom: 0;">Search Results</h1>
+        <section class="cardsContainer" style="padding: 2rem 0;"></section>
     </div>
 
     <section class="footer">
